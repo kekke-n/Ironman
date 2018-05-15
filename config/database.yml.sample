@@ -1,0 +1,29 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username:
+  password:
+  host: localhost
+
+development:
+  <<: *default
+  database: daredevil
+
+production:
+  <<: *default
+  database: daredevil
+
+test:
+  <<: *default
+  database: daredevil
+
+# Please write your information of DB connecting
+extend_db:
+  adapter: postgresql
+  database: mother
+  host:
+  username:
+  password:
+  encoding: utf8
+  timeout: 1200
