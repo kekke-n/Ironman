@@ -48,8 +48,9 @@
 
 <p>
   <strong>Sql:</strong>
-  <%= @query.sql %>
+  <%= simple_format(@query.sql) %>
 </p>
+<hr>
 <%= link_to 'Edit', edit_query_path(@query) %> |
 <%= link_to 'Back', queries_path %> |
 <%= link_to 'Download CSV', download_csv_query_path(@query, format: "csv"), method: :post %> |
