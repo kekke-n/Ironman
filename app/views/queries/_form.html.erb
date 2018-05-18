@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :query_title %>
+    <%= form.text_field :title, id: :query_title, :size => "100"  %>
   </div>
 
   <div class="field">
     <%= form.label :sql %>
-    <%= form.text_area :sql, id: :query_sql %>
+    <%= form.text_area :sql, id: :query_sql, :size => "100x30" %>
   </div>
 
   <div class="actions">
