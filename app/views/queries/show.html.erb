@@ -48,7 +48,7 @@
 
 <p>
   <strong>Sql:</strong>
-  <%= simple_format(@query.sql) %>
+  <pre style="margin:30px; width:500px;"><code class="sql"><%=@query.sql%></code></pre>
 </p>
 <hr>
 <%= link_to 'Edit', edit_query_path(@query) %> |
