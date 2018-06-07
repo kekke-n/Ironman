@@ -21,7 +21,7 @@ test:
 # Please write your information of DB connecting
 extend_db:
   adapter: postgresql
-  database: mother
+  database: 
   host:
   username:
   password:
