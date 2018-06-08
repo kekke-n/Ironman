@@ -1,11 +1,12 @@
-<h1>Home#index</h1>
+<h1>Home</h1>
 
-<h2>Queries</h2>
+<h2><%= link_to 'Queries', queries_path %></h2>
 <%= link_to 'New Query', new_query_path %>
 <br>
 <small>最近更新された10件</small>
 <%= render :partial => '/queries/list' %>
 <hr>
 <h2>Categories</h2>
+<h2><%= link_to 'Categories', categories_path %></h2>
 <%= link_to 'New Category', new_category_path %>
 <%= render :partial => '/categories/list' %>

@@ -1,4 +1,5 @@
 class QueriesController < ApplicationController
+  layout 'base'
   before_action :set_query, only: [:show, :edit, :update, :destroy]
   require 'csv'
 
