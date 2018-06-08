@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @queries = Query.includes(:category).all.order(:updated_at).limit(10)
+    @queries = Query.includes(:category).limit(10).order(:updated_at).reverse_order
     @categories = Category.all.order(:id)
     byebug
   end

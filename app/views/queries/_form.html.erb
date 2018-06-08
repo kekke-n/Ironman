@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :category %>
+    <%= form.collection_select :category_id, Category.all.order(:id), :id, :name, :selected => 0 %>
+  </div>
+
+  <div class="field">
     <%= form.label :sql %>
     <%= form.text_area :sql, id: :query_sql, :size => "100x30" %>
   </div>
