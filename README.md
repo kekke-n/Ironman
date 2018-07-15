@@ -7,8 +7,15 @@ Daredevil is a web application that makes it easy to see data in the database by
 
 ## How to build a development environment
 
-- Ruby 2.5.0
-- Rails 5.1.5
+- Version
+  - Ruby 2.5.0
+  - Rails 5.1.5
+
+- Download daredevil code
+
+```
+git clone https://github.com/adebadayo/Daredevil.git
+```
 
 Execute the following docker command.
 
