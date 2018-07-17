@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :queries do
     member do
-      post :download_csv
-      post :download_tsv
+      get :download_csv
+      get :download_tsv
     end
   end
   get 'home/index'
