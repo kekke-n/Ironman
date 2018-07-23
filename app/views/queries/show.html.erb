@@ -65,7 +65,7 @@
 <%= link_to 'Download CSV', download_csv_query_path(@query, format: "csv") %> |
 <%= link_to 'Download TSV', download_tsv_query_path(@query, format: "csv") %>
 
-<textarea id="csv_date" cols="30" rows="1" hidden><%= @csv_date %></textarea>
+<textarea id="csv_date" cols="30" rows="1" hidden><%= @csv_date_for_copy %></textarea>
 <button id='copy'>CSV形式でコピー</button>
 
 <table id="queryTable" border="1">

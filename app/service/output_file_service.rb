@@ -7,6 +7,7 @@ class OutputFileService
         csv << record
       end
     end
+    csv_data.encode(Encoding::SJIS)
   end
   def self.generate_tsv_from_active_record input_data, has_header=false
     CSV.generate("", :headers => input_data.columns, :write_headers => has_header, :col_sep => "\t") do |csv|
@@ -15,5 +16,6 @@ class OutputFileService
         csv << record
       end
     end
+    csv_data.encode(Encoding::SJIS)
   end
 end

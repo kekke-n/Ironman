@@ -16,6 +16,7 @@ class QueriesController < ApplicationController
     @result = DbConnectService::execute_sql(sql)
     has_header = true
     @csv_date = OutputFileService::generate_csv_from_active_record(@result, has_header)
+    @csv_date_for_copy = @csv_date.chomp.encode(__ENCODING__)
     @header = @result.columns
   end
 
