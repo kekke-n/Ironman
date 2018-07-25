@@ -15,8 +15,7 @@ class QueriesController < ApplicationController
     sql = Query.find_by_id(params[:id]).sql
     @result = DbConnectService::execute_sql(sql)
     has_header = true
-    @csv_date = OutputFileService::generate_csv_from_active_record(@result, has_header)
-    @csv_date_for_copy = @csv_date.chomp.encode(__ENCODING__)
+    @csv_date = OutputFileService::get_csv_data(@result, has_header)
     @header = @result.columns
   end
 
@@ -85,7 +84,7 @@ class QueriesController < ApplicationController
     query = Query.find_by_id(params[:id])
     result = DbConnectService::execute_sql(query.sql)
     has_header = true
-    csv_data = OutputFileService::generate_csv_from_active_record(result, has_header)
+    csv_data = OutputFileService::get_csv_data(result, has_header)
     respond_to do |format|
       format.html
       format.csv { send_data csv_data, type: 'text/csv; charset=shift_jis', filename: query.title+".csv" }
@@ -96,7 +95,7 @@ class QueriesController < ApplicationController
     query = Query.find_by_id(params[:id])
     result = DbConnectService::execute_sql(query.sql)
     has_header = true
-    csv_data = OutputFileService::generate_tsv_from_active_record(result, has_header)
+    csv_data = OutputFileService::get_tsv_data(result, has_header)
     respond_to do |format|
       format.html
       format.csv { send_data csv_data, type: 'text/csv; charset=shift_jis', filename: query.title+".tsv" }
