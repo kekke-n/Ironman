@@ -32,4 +32,7 @@ docker-compose up
 ```
 docker attach web_container_name
 ```
-- If you want know web_container_name, you can confirm from `docker ps`
+  - You can watch the console display.
+- If you want to know web_container_name, you can confirm from `docker ps`
+- If you want to exit from debugger console, please command `Control + P, Q` , not `Control + C`.
+  - `Control + C` make container stopped.
