@@ -18,8 +18,17 @@ Daredevil is a web application that makes it easy to see data in the database by
 git clone https://github.com/adebadayo/Daredevil.git
 ```
 
-- Execute the following docker-compose command.
+- Write DB password of your environment to `docker-compose.yml` and `database.yml`
+  - docker-compose.yml
+```yml
+POSTGRES_PASSWORD: # put down your environment password
+```
+  - database.yml
+```yml
+  password:  # put down your environment password
+```
 
+- Execute the following docker-compose command.
 ```
 docker-compose build
 docker-compose run web bin/rake db:create db:migrate db:seed
@@ -27,7 +36,7 @@ docker-compose up
 ```
 
 ## How to debug
-- Put down `byebug` or `debugger` where your want to debug.
+- Write`byebug` or `debugger` where your want to debug.
 - Execute the following docker command.
 ```
 docker attach web_container_name
