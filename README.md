@@ -1,8 +1,10 @@
-# Daredevil
+# Ironman
 
-Daredevil is a web application that makes it easy to see data in the database by registering SQL.
+Ironman is a web application that makes it easy to see data in the database by registering SQL.
 
-![Daredevil](https://orig00.deviantart.net/3248/f/2008/143/b/b/daredevil_by_jebriodo.jpg)
+![Ironman](https://pre00.deviantart.net/4c98/th/pre/i/2011/057/7/3/ironman_by_thestickibear-d3ahlq0.jpg)
+
+https://www.deviantart.com/thestickibear/art/Ironman-199015992?offset=0
 
 
 ## Version
@@ -12,10 +14,10 @@ Daredevil is a web application that makes it easy to see data in the database by
 
 ## How to build a development environment
 
-- Download daredevil code
+- Download Ironman code
 
 ```
-git clone https://github.com/adebadayo/Daredevil.git
+git clone https://github.com/adebadayo/Ironman.git
 ```
 
 - Write DB password of your environment to `docker-compose.yml` and `database.yml`
