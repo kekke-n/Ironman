@@ -86,6 +86,7 @@ class QueriesController < ApplicationController
     result = DbConnectService::execute_sql(query.sql)
     has_header = true
     csv_data = OutputFileService::get_csv_data(result, has_header)
+    csv_data = csv_data.encode(Encoding::SJIS, invalid: :replace, undef: :replace)
     respond_to do |format|
       format.html
       format.csv { send_data csv_data, type: 'text/csv; charset=shift_jis', filename: query.title+".csv" }
@@ -97,6 +98,7 @@ class QueriesController < ApplicationController
     result = DbConnectService::execute_sql(query.sql)
     has_header = true
     csv_data = OutputFileService::get_tsv_data(result, has_header)
+    csv_data = csv_data.encode(Encoding::SJIS, invalid: :replace, undef: :replace)
     respond_to do |format|
       format.html
       format.csv { send_data csv_data, type: 'text/csv; charset=shift_jis', filename: query.title+".tsv" }
