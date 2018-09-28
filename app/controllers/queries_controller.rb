@@ -16,6 +16,7 @@ class QueriesController < ApplicationController
     @result = DbConnectService::execute_sql(sql)
     has_header = true
     @csv_date = OutputFileService::get_csv_data(@result, has_header)
+    @tsv_date = OutputFileService::get_tsv_data(@result, has_header)
     @header = @result.columns
   end
 
