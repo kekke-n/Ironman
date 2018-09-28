@@ -8,20 +8,20 @@ default: &default
 
 development:
   <<: *default
-  database: daredevil
+  database: ironman
 
 production:
   <<: *default
-  database: daredevil
+  database: ironman
 
 test:
   <<: *default
-  database: daredevil
+  database: ironman
 
 # Please write your information of DB connecting
 extend_db:
   adapter: postgresql
-  database: 
+  database:
   host:
   username:
   password:
