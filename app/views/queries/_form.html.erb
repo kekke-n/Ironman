@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :category %>
-    <%= form.collection_select :category_id, Category.all.order(:id), :id, :name, :selected => 0 %>
+    <%= form.collection_select :category_id, Category.all.order(:id), :id, :name, :selected => query.category_id %>
   </div>
 
   <div class="field">
