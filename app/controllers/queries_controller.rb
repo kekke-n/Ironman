@@ -18,6 +18,7 @@ class QueriesController < ApplicationController
     @csv_date = OutputFileService::get_csv_data(@result, has_header)
     @tsv_date = OutputFileService::get_tsv_data(@result, has_header)
     @header = @result.columns
+    @result = Kaminari.paginate_array(@result.to_a).page(params[:page]).per(1000)
   end
 
   # GET /queries/new
