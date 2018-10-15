@@ -3,7 +3,6 @@
     <tr>
       <th>Category</th>
       <th>Title</th>
-      <th>Sql</th>
       <th colspan="3">Action</th>
       <th>updated_at</th>
     </tr>
@@ -12,9 +11,8 @@
   <tbody>
     <% @queries.each do |query| %>
       <tr>
-        <td><%= query.category.name %></td>
-        <td><%= query.title %></td>
-        <td><%= query.sql[0,100] + "..."%></td>
+        <td><%= link_to query.category.name, query.category %></td>
+        <td><%= link_to query.title, query %></td>
         <td><%= link_to 'Show', query %></td>
         <td><%= link_to 'Edit', edit_query_path(query) %></td>
         <td><%= link_to 'Destroy', query, method: :delete, data: { confirm: 'Are you sure?' } %></td>
