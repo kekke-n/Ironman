@@ -6,8 +6,9 @@ class DbConnectService
       con = ActiveRecord::Base.connection
       result = con.select_all(sql)
       ActiveRecord::Base.establish_connection :development
-    rescue
+    rescue => e
       ActiveRecord::Base.establish_connection :development
+      raise e.message
     end
     return result
   end

@@ -10,6 +10,10 @@
     jQuery(function($){
         $("#queryTable").DataTable({
           "lengthMenu": [[-1, 50, 100, 500, 1000], ["ALL", 50, 100, 500, 1000]],
+          // ソート機能 無効
+          // ordering: false,
+          // ページング機能 無効
+          paging: false
         });
 
         $('#csv_copy').click(function(e) {
