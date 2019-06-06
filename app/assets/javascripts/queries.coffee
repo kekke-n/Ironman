@@ -29,10 +29,7 @@ $ ->
     $(".sql-edit-form").css('display', 'none')
     $(".sql-view").css('display', '')
 
-#SQLのシンタックスハイライトを有効にする
-hljs.initHighlightingOnLoad()
-
-execCopy(string) ->
+execCopy = (string) ->
   temp = document.createElement('div')
 
   temp.appendChild(document.createElement('pre')).textContent = string
@@ -52,3 +49,4 @@ execCopy(string) ->
     alert('コピーできました')
   else
     alert('このブラウザでは対応していません')
+@
