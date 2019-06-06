@@ -3,56 +3,6 @@
 <link rel="stylesheet" type="text/css" href="/stylesheets/highlight/styles/tomorrow.css" />
 <script src="/javascript/highlight.pack.js"></script>
 
-<script>
-    //SQLのシンタックスハイライトを有効にする
-    hljs.initHighlightingOnLoad();
-
-    jQuery(function($){
-        $("#queryTable").DataTable({
-          "lengthMenu": [[-1, 50, 100, 500, 1000], ["ALL", 50, 100, 500, 1000]],
-          // ソート機能 無効
-          // ordering: false,
-          // ページング機能 無効
-          paging: false
-        });
-
-        $('.csv_copy').click(function(e) {
-          execCopy($('#csv_date').val())
-        });
-        $('.tsv_copy').click(function(e) {
-          execCopy($('#tsv_date').val())
-        });
-    });
-
-    //
-    function execCopy(string){
-    var temp = document.createElement('div');
-
-    temp.appendChild(document.createElement('pre')).textContent = string;
-
-    var s = temp.style;
-    s.position = 'fixed';
-    s.left = '-100%';
-
-    document.body.appendChild(temp);
-    document.getSelection().selectAllChildren(temp);
-
-    var result = document.execCommand('copy');
-
-    document.body.removeChild(temp);
-    // true なら実行できている falseなら失敗か対応していないか
-    if(result){
-      alert('コピーできました');
-    }
-    else {
-      alert('このブラウザでは対応していません');
-    }
-    return ;
-}
-
-</script>
-
-
 <p>
   <strong>Title:</strong>
   <%= @query.title %>
@@ -65,7 +15,16 @@
 
 <p>
   <strong>Sql:</strong>
-  <pre style="margin:30px; width:1000px;"><code class="sql"><%=@query.sql%></code></pre>
+  <pre class='sql-view' style="margin:30px; width:1000px;"><code class="sql-code"><%=@query.sql%></code></pre>
+  <div class="sql-edit-form" style="display:none;">
+    <%= form_with(model: @query, local: true, remote: true) do |form| %>
+      <div>
+        <%= form.text_area :sql, class: "sql-edit materialize-textarea", size: "100x100" %>
+      </div>
+      <%= form.submit class: "waves-effect waves-light btn"%>
+      <button type="button" class="sql-edit-cancel waves-effect waves-light btn">CANCEL</button>
+    <% end %>
+  </div>
 </p>
 <hr>
 <%= link_to 'Edit', edit_query_path(@query) %> |
@@ -101,3 +60,4 @@
   <% end %>
   </tbody>
 </table>
+<%= javascript_include_tag 'queries' %>

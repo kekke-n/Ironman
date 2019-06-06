@@ -20,3 +20,12 @@ label {
   font-size: 20px;
   margin: 15px 0px;
 }
+
+textarea.sql-edit {
+  height: 400px;
+  width: 80%;
+  background-color: #FFFFCC;
+  line-height: 20px;
+  resize: both;
+  margin: 0px 15px;
+}
