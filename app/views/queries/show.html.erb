@@ -16,10 +16,10 @@
           paging: false
         });
 
-        $('#csv_copy').click(function(e) {
+        $('.csv_copy').click(function(e) {
           execCopy($('#csv_date').val())
         });
-        $('#tsv_copy').click(function(e) {
+        $('.tsv_copy').click(function(e) {
           execCopy($('#tsv_date').val())
         });
     });
@@ -74,9 +74,9 @@
 <%= link_to 'Download TSV', download_tsv_query_path(@query, format: "csv") %>
 
 <textarea id="csv_date" cols="30" rows="1" hidden><%= @csv_date %></textarea>
-<button id='csv_copy'>CSV形式でコピー</button>
+<button class="csv_copy waves-effect waves-light btn-small">CSV形式でコピー</button>
 <textarea id="tsv_date" cols="30" rows="1" hidden><%= @tsv_date %></textarea>
-<button id='tsv_copy'>TSV形式でコピー</button>
+<button class="tsv_copy waves-effect waves-light btn-small">TSV形式でコピー</button>
 
 <table id="queryTable" border="1">
   <thead>

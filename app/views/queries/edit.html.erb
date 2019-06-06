@@ -2,7 +2,6 @@
 
 <h1>Editing Query</h1>
 
+<%= link_to 'Show', @query, class: "form_link" %> |
+<%= link_to 'Back', queries_path, class: "form_link" %>
 <%= render 'form', query: @query %>
-
-<%= link_to 'Show', @query %> |
-<%= link_to 'Back', queries_path %>
