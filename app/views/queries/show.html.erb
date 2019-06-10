@@ -53,6 +53,7 @@
       <% @header.each do |h| %>
         <% if record[h].to_s.match(/^http.*/).present? %>
           <td><a href="<%= record[h].to_s %>"><%= record[h].to_s %></a></td>
+          <td><a href="<%= record[h].to_s %>" target="_blank"><%= record[h].to_s %></a></td>
         <% else %>
           <td><%= record[h] %></td>
         <% end %>
