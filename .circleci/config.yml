@@ -1,0 +1,37 @@
+# Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
+version: 2.1
+jobs:
+  build:
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - checkout
+      - run:
+          name: docker-compose build
+          command: docker-compose build
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
+          name: sleep for waiting launch db
+          command: sleep 1
+      - run:
+          name: "before_test: setup db"
+          command: docker-compose run web rails db:create db:migrate db:seed
+      - run:
+          name: test
+          command: docker-compose run web bundle exec rspec #RSpecを使う場合は、bundle exec rspec
+      - run:
+          name: docker-compose down
+          command: docker-compose down
+
+# Use a package of configuration called an orb, see https://circleci.com/docs/2.0/orb-intro/
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.3.1
+
+# Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
+workflows:
+  build:
+    jobs:
+      - build
