@@ -21,7 +21,6 @@ tags
 /files/demands/*.dat
 /files/demands/*.csv
 
-config/database.yml
 *.sw*
 
 # DS_Store ignore
@@ -30,5 +29,8 @@ config/database.yml
 # Ignore schema.rb
 # /db/schema.rb
 
-config/database.yml
 .byebug_history
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml

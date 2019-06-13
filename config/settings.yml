@@ -1,0 +1,10 @@
+db:
+  username: 'ironman'
+  password: 'ironman'
+  database: 'ironman'
+  test_database: 'ironman_test'
+extend_db:
+  host:
+  username:
+  password:
+  database:

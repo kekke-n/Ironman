@@ -1,0 +1,27 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: <%= Settings[:db][:username] %>
+  password: <%= Settings[:db][:password] %>
+  host: db
+
+development:
+  <<: *default
+  database: <%= Settings[:db][:database] %>
+
+production:
+  <<: *default
+  database: <%= Settings[:db][:database] %>
+
+test:
+  <<: *default
+  database: <%= Settings[:db][:test_database] %>
+
+extend_db:
+  <<: *default
+  adapter: postgresql
+  database: <%= Settings[:extend_db][:database] %>
+  host: <%= Settings[:extend_db][:host] %>
+  username: <%= Settings[:extend_db][:username] %>
+  password: <%= Settings[:extend_db][:password] %>

@@ -9,6 +9,14 @@ jobs:
       - run:
           name: docker-compose build
           command: docker-compose build
+  test:
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - checkout
+      - run:
+          name: docker-compose build
+          command: docker-compose build
       - run:
           name: docker-compose up
           command: docker-compose up -d
@@ -35,3 +43,4 @@ workflows:
   build:
     jobs:
       - build
+      - test
