@@ -2,7 +2,7 @@
 version: 2.1
 jobs:
   build:
-    docker:
+    machine:
       image: circleci/classic:edge
     steps:
       - checkout
@@ -10,7 +10,7 @@ jobs:
           name: docker-compose build
           command: docker-compose build
   test:
-    docker:
+    machine:
       image: circleci/classic:edge
     steps:
       - checkout
