@@ -13,7 +13,7 @@ class QueriesController < ApplicationController
   # GET /queries/1.json
   def show
     sql = Query.find_by_id(params[:id]).sql
-    @result = DbConnectService::execute_sql(sql)
+    @result = Extend::Base.execute_sql(sql)
     has_header = true
     @csv_date = OutputFileService::get_csv_data(@result, has_header)
     @tsv_date = OutputFileService::get_tsv_data(@result, has_header)
@@ -35,7 +35,7 @@ class QueriesController < ApplicationController
   def create
     @query = Query.new(query_params)
     # update,insert文だと思われる場合は登録を禁止する。
-    if DbConnectService::is_insert_or_update_sql(@query.sql)
+    if Extend::Base.is_insert_or_update_sql(@query.sql)
       flash.now[:alert] =  "更新処理(UPDATE文,INSERT文)の恐れがあるため登録を禁止します."
       render :new
       return
@@ -56,7 +56,7 @@ class QueriesController < ApplicationController
   # PATCH/PUT /queries/1.json
   def update
     # update,insert文だと思われる場合は登録を禁止する。
-    if DbConnectService::is_insert_or_update_sql(@query.sql)
+    if Extend::Base.is_insert_or_update_sql(@query.sql)
       flash.now[:alert] =  "更新処理(UPDATE文,INSERT文)の恐れがあるため登録を禁止します."
       render :edit
       return
@@ -84,7 +84,7 @@ class QueriesController < ApplicationController
 
   def download_csv
     query = Query.find_by_id(params[:id])
-    result = DbConnectService::execute_sql(query.sql)
+    result = Extend::Base.execute_sql(query.sql)
     has_header = true
     csv_data = OutputFileService::get_csv_data(result, has_header)
     csv_data = csv_data.encode(Encoding::SJIS, invalid: :replace, undef: :replace)
@@ -96,7 +96,7 @@ class QueriesController < ApplicationController
 
   def download_tsv
     query = Query.find_by_id(params[:id])
-    result = DbConnectService::execute_sql(query.sql)
+    result = Extend::Base.execute_sql(query.sql)
     has_header = true
     csv_data = OutputFileService::get_tsv_data(result, has_header)
     csv_data = csv_data.encode(Encoding::SJIS, invalid: :replace, undef: :replace)
