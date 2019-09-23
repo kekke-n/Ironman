@@ -5,6 +5,19 @@ class Extend::Base < ApplicationRecord
   def self.execute_sql sql
     begin
       result = connection.select_all(sql)
+    rescue ActiveRecord::StatementInvalid => e
+      err_type = e.message[/PG::(.*):\sERROR:(.*)/, 1]
+      err_msg = e.message[/PG::(.*):\sERROR:(.*)/, 2]
+      case err_type
+        when "UndefinedColumn"
+          raise "カラム名が定義されていません."
+        when "UndefinedTable"
+          raise "テーブル名が正しくありません."
+        when "SyntaxError"
+          raise "SQLの構文に誤りがあります.\n(#{err_msg})"
+        else
+          raise "SQLの構文に誤りがあります.\n(#{err_msg})"
+      end
     rescue => e
       raise e.message
     end

@@ -12,13 +12,17 @@ class QueriesController < ApplicationController
   # GET /queries/1
   # GET /queries/1.json
   def show
-    sql = Query.find_by_id(params[:id]).sql
-    @result = Extend::Base.execute_sql(sql)
-    has_header = true
-    @csv_date = OutputFileService::get_csv_data(@result, has_header)
-    @tsv_date = OutputFileService::get_tsv_data(@result, has_header)
-    @header = @result.columns
-    @result = Kaminari.paginate_array(@result.to_a).page(params[:page]).per(1000)
+    begin
+      sql = Query.find_by_id(params[:id]).sql
+      @result = Extend::Base.execute_sql(sql)
+      has_header = true
+      @csv_date = OutputFileService::get_csv_data(@result, has_header)
+      @tsv_date = OutputFileService::get_tsv_data(@result, has_header)
+      @header = @result.columns
+      @result = Kaminari.paginate_array(@result.to_a).page(params[:page]).per(1000)
+    rescue => e
+      flash.now[:alert] = e.message
+    end
   end
 
   # GET /queries/new
@@ -40,6 +44,11 @@ class QueriesController < ApplicationController
       render :new
       return
     end
+    begin
+      Extend::Base.execute_sql(sql)
+    rescue => e
+      flash.now[:alert] = e.message
+    end
 
     respond_to do |format|
       if @query.save
@@ -56,8 +65,15 @@ class QueriesController < ApplicationController
   # PATCH/PUT /queries/1.json
   def update
     # update,insert文だと思われる場合は登録を禁止する。
-    if Extend::Base.is_insert_or_update_sql(@query.sql)
-      flash.now[:alert] =  "更新処理(UPDATE文,INSERT文)の恐れがあるため登録を禁止します."
+    if Extend::Base.is_insert_or_update_sql(query_params['sql'])
+      flash.now[:error] =  "更新処理(UPDATE文,INSERT文)の恐れがあるため登録を禁止します."
+      render :edit
+      return
+    end
+    begin
+      Extend::Base.execute_sql(query_params['sql'])
+    rescue => e
+      flash.now[:error] = "#{e.message}"
       render :edit
       return
     end

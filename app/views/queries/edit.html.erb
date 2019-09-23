@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Editing Query</h1>
+<p id="error">
+<% unless flash.empty? %>
+  <% flash.each do |key, value| %>
+    <%= value %>
+  <% end %>
+<% end %>
+</p>
 
+<h1>Editing Query</h1>
 <%= link_to 'Show', @query, class: "form_link" %> |
 <%= link_to 'Back', queries_path, class: "form_link" %>
 <%= render 'form', query: @query %>
