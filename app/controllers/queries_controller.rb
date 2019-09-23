@@ -41,9 +41,11 @@ class QueriesController < ApplicationController
       return
     end
     begin
-      Extend::Base.execute_sql(sql)
+      Extend::Base.execute_sql(query_params['sql'])
     rescue => e
-      flash.now[:alert] = e.message
+      flash.now[:error] = "#{e.message}"
+      render :edit
+      return
     end
 
     respond_to do |format|

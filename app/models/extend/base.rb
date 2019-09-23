@@ -6,8 +6,10 @@ class Extend::Base < ApplicationRecord
     begin
       result = connection.select_all(sql)
     rescue ActiveRecord::StatementInvalid => e
-      err_type = e.message[/PG::(.*):\sERROR:(.*)/, 1]
-      err_msg = e.message[/PG::(.*):\sERROR:(.*)/, 2]
+      reg_pattern = /PG::(.*):\sERROR:\s(.*)/
+      err_type = e.message[reg_pattern, 1]
+      err_msg = e.message[reg_pattern, 2]
+      debugger
       case err_type
         when "UndefinedColumn"
           raise "カラム名が定義されていません."
