@@ -12,17 +12,13 @@ class QueriesController < ApplicationController
   # GET /queries/1
   # GET /queries/1.json
   def show
-    begin
-      sql = Query.find_by_id(params[:id]).sql
-      @result = Extend::Base.execute_sql(sql)
-      has_header = true
-      @csv_date = OutputFileService::get_csv_data(@result, has_header)
-      @tsv_date = OutputFileService::get_tsv_data(@result, has_header)
-      @header = @result.columns
-      @result = Kaminari.paginate_array(@result.to_a).page(params[:page]).per(1000)
-    rescue => e
-      flash.now[:alert] = e.message
-    end
+    sql = Query.find_by_id(params[:id]).sql
+    @result = Extend::Base.execute_sql(sql)
+    has_header = true
+    @csv_date = OutputFileService::get_csv_data(@result, has_header)
+    @tsv_date = OutputFileService::get_tsv_data(@result, has_header)
+    @header = @result.columns
+    @result = Kaminari.paginate_array(@result.to_a).page(params[:page]).per(1000)
   end
 
   # GET /queries/new
